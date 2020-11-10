@@ -26,9 +26,50 @@ namespace VST
         {
             short[] wave = new short[SampleRate];
             byte[] binaryWave = new byte[SampleRate * sizeof(short)];
-            float frequency = 440f;
+            float frequency;
+            switch (e.KeyCode)
+            {
+                case Keys.Q:
+                    frequency = 261.6f;
+                    break;
+                case Keys.D2:
+                    frequency = 277.2f;
+                    break;
+                case Keys.W:
+                    frequency = 293.7f;
+                    break;
+                case Keys.D3:
+                    frequency = 311.1f;
+                    break;
+                case Keys.E:
+                    frequency = 329.6f;
+                    break;
+                case Keys.R:
+                    frequency = 349.2f;
+                    break;
+                case Keys.D5:
+                    frequency = 370f;
+                    break;
+                case Keys.T:
+                    frequency = 392f;
+                    break;
+                case Keys.D6:
+                    frequency = 415.3f;
+                    break;
+                case Keys.Y:
+                    frequency = 440f;
+                    break;
+                case Keys.D7:
+                    frequency = 466.2f;
+                    break;
+                case Keys.U:
+                    frequency = 493.9f;
+                    break;
+                default:
+                    frequency = 440f;
+                    break;
+            }
             short temp;
-
             int n = (int)(SampleRate / frequency);
             short stepSize = (short)(short.MaxValue * 2 / n);
             foreach (Oscillator oscillator in Controls.OfType<Oscillator>())
