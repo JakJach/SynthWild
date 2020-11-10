@@ -27,46 +27,83 @@ namespace VST
             short[] wave = new short[SampleRate];
             byte[] binaryWave = new byte[SampleRate * sizeof(short)];
             float frequency;
+            int octave = 1;
             switch (e.KeyCode)
             {
-                case Keys.Q:
-                    frequency = 261.6f;
+                #region KeyCode Frequencies
+                #region First Row
+                case Keys.D1:
+                case Keys.D4:
+                case Keys.D8:
+                case Keys.OemMinus:
+                    frequency = 0f;
                     break;
                 case Keys.D2:
-                    frequency = 277.2f;
-                    break;
-                case Keys.W:
-                    frequency = 293.7f;
+                    frequency = octave * ENoteFrequency.Cis;
                     break;
                 case Keys.D3:
-                    frequency = 311.1f;
-                    break;
-                case Keys.E:
-                    frequency = 329.6f;
-                    break;
-                case Keys.R:
-                    frequency = 349.2f;
+                    frequency = octave * ENoteFrequency.Dis;
                     break;
                 case Keys.D5:
-                    frequency = 370f;
-                    break;
-                case Keys.T:
-                    frequency = 392f;
+                    frequency = octave * ENoteFrequency.Fis;
                     break;
                 case Keys.D6:
-                    frequency = 415.3f;
-                    break;
-                case Keys.Y:
-                    frequency = 440f;
+                    frequency = octave * ENoteFrequency.Gis;
                     break;
                 case Keys.D7:
-                    frequency = 466.2f;
+                    frequency = octave * ENoteFrequency.Ais;
+                    break;
+                case Keys.D9:
+                    frequency = 2 * octave * ENoteFrequency.Cis;
+                    break;
+                case Keys.D0:
+                    frequency = 2 * octave * ENoteFrequency.Dis;
+                    break;
+                case Keys.Oemplus:
+                    frequency = 2 * octave * ENoteFrequency.Fis;
+                    break;
+                #endregion
+                #region Second Row
+                case Keys.Q:
+                    frequency = octave * ENoteFrequency.C;
+                    break;
+                case Keys.W:
+                    frequency = octave * ENoteFrequency.D;
+                    break;
+                case Keys.E:
+                    frequency = octave * ENoteFrequency.E;
+                    break;
+                case Keys.R:
+                    frequency = octave * ENoteFrequency.F;
+                    break;
+                case Keys.T:
+                    frequency = octave * ENoteFrequency.G;
+                    break;
+                case Keys.Y:
+                    frequency = octave * ENoteFrequency.A;
                     break;
                 case Keys.U:
-                    frequency = 493.9f;
+                    frequency = octave * ENoteFrequency.B;
                     break;
+                case Keys.I:
+                    frequency = 2 * octave * ENoteFrequency.C;
+                    break;
+                case Keys.O:
+                    frequency = 2 * octave * ENoteFrequency.D;
+                    break;
+                case Keys.P:
+                    frequency = 2 * octave * ENoteFrequency.E;
+                    break;
+                case Keys.OemOpenBrackets:
+                    frequency = 2 * octave * ENoteFrequency.F;
+                    break;
+                case Keys.OemCloseBrackets:
+                    frequency = 2 * octave * ENoteFrequency.G;
+                    break;
+                #endregion
+                #endregion
                 default:
-                    frequency = 440f;
+                    frequency = 0f;
                     break;
             }
             short temp;
