@@ -20,7 +20,7 @@ namespace VST
 
         private void VST_KeyDown(object sender, KeyEventArgs e)
         {
-            IEnumerable<Oscillator> oscillators = Controls.OfType<Oscillator>();
+            IEnumerable<Oscillator> oscillators = Controls.OfType<Oscillator>().Where(o => o.Status);
 
             short[] wave = new short[SampleRate];
             byte[] binaryWave = new byte[SampleRate * sizeof(short)];

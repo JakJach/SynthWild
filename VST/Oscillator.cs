@@ -53,9 +53,19 @@ namespace VST
                 control.Font = new Font("Calibri", 8);
                 control.Click += WaveButton_Click;
             }
+
+            Controls.Add(new CheckBox()
+            {
+                Name = "On/Off",
+                Location = new Point(450,20),
+                Size = new Size(20,20),
+                Text ="On/Off",
+                Checked = true
+            });
         }
         #region Properties
         public EWaveFormType WaveForm { get; private set; }
+        public bool Status => ((CheckBox)Controls["On/Off"]).Checked;
         #endregion
 
         #region Methods
