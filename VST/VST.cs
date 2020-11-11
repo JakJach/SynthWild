@@ -1,4 +1,6 @@
 ﻿using System;
+using System.Collections;
+using System.Collections.Generic;
 using System.IO;
 using System.Linq;
 using System.Media;
@@ -18,6 +20,8 @@ namespace VST
 
         private void VST_KeyDown(object sender, KeyEventArgs e)
         {
+            IEnumerable<Oscillator> oscillators = Controls.OfType<Oscillator>();
+
             short[] wave = new short[SampleRate];
             byte[] binaryWave = new byte[SampleRate * sizeof(short)];
             float frequency;
@@ -163,17 +167,17 @@ namespace VST
             short temp;
             int n = (int)(SampleRate / frequency);
             short stepSize = (short)(short.MaxValue * 2 / n);
-            foreach (Oscillator oscillator in Controls.OfType<Oscillator>())
+            foreach (Oscillator oscillator in oscillators)
             {
                 switch (oscillator.WaveForm)
                 {
                     case EWaveFormType.Sine:
                         for (int i = 0; i < wave.Length; i++)
-                            wave[i] = Convert.ToInt16(short.MaxValue * Math.Sin((Math.PI * 2 * frequency) / SampleRate * i));
+                            wave[i] += Convert.ToInt16(short.MaxValue * Math.Sin((Math.PI * 2 * frequency) / SampleRate * i) / oscillators.Count());
                         break;
                     case EWaveFormType.Square:
                         for (int i = 0; i < wave.Length; i++)
-                            wave[i] = Convert.ToInt16(short.MaxValue * Math.Sign(Math.Sin(Math.PI * 2 * frequency / SampleRate * i)));
+                            wave[i] += Convert.ToInt16(short.MaxValue * Math.Sign(Math.Sin(Math.PI * 2 * frequency / SampleRate * i)) / oscillators.Count());
                         break;
                     case EWaveFormType.Saw:
                         for (int i = 0; i < wave.Length; i++)
@@ -182,7 +186,7 @@ namespace VST
                             for (int j = 0; j < n && i < SampleRate; j++)
                             {
                                 temp += stepSize;
-                                wave[i++] = Convert.ToInt16(temp);
+                                wave[i++] += Convert.ToInt16(temp / oscillators.Count());
                             }
                             i--;
                         }
@@ -194,13 +198,13 @@ namespace VST
                             if (Math.Abs(temp + stepSize) > short.MaxValue)
                                 stepSize = (short)-stepSize;
                             temp += stepSize;
-                            wave[i] = Convert.ToInt16(temp);
+                            wave[i] += Convert.ToInt16(temp / oscillators.Count());
                         }
                         break;
                     case EWaveFormType.Noise:
                         Random random = new Random();
                         for (int i = 0; i < wave.Length; i++)
-                            wave[i] = (short)random.Next(short.MinValue, short.MaxValue);
+                            wave[i] += Convert.ToInt16(random.Next(short.MinValue, short.MaxValue) / oscillators.Count());
                         break;
                 }
 

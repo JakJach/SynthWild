@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             this.oscillator1 = new Oscillator();
+            this.oscillator2 = new Oscillator();
             this.SuspendLayout();
             // 
             // oscillator1
@@ -38,13 +39,24 @@
             this.oscillator1.Size = new System.Drawing.Size(440, 50);
             this.oscillator1.TabIndex = 0;
             this.oscillator1.TabStop = false;
+            this.oscillator1.Text = "Oscillator 1";
+            // 
+            // oscillator2
+            // 
+            this.oscillator2.Location = new System.Drawing.Point(12, 68);
+            this.oscillator2.Name = "oscillator2";
+            this.oscillator2.Size = new System.Drawing.Size(440, 50);
+            this.oscillator2.TabIndex = 1;
+            this.oscillator2.TabStop = false;
+            this.oscillator2.Text = "Oscillator 2";
             // 
             // VST
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.Control;
-            this.ClientSize = new System.Drawing.Size(800, 450);
+            this.ClientSize = new System.Drawing.Size(464, 144);
+            this.Controls.Add(this.oscillator2);
             this.Controls.Add(this.oscillator1);
             this.KeyPreview = true;
             this.Name = "VST";
@@ -57,6 +69,7 @@
         #endregion
 
         private Oscillator oscillator1;
+        private Oscillator oscillator2;
     }
 }
 
