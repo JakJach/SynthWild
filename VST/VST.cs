@@ -1,13 +1,7 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Media;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows.Forms;
 
 namespace VST
@@ -99,6 +93,66 @@ namespace VST
                     break;
                 case Keys.OemCloseBrackets:
                     frequency = 2 * octave * ENoteFrequency.G;
+                    break;
+                #endregion
+                #region Third Row
+                case Keys.A:
+                case Keys.F:
+                case Keys.K:
+                    frequency = 0f;
+                    break;
+                case Keys.S:
+                    frequency = octave * ENoteFrequency.Cis / 2;
+                    break;
+                case Keys.D:
+                    frequency = octave * ENoteFrequency.Dis / 2;
+                    break;
+                case Keys.G:
+                    frequency = octave * ENoteFrequency.Fis / 2;
+                    break;
+                case Keys.H:
+                    frequency = octave * ENoteFrequency.Gis / 2;
+                    break;
+                case Keys.J:
+                    frequency = octave * ENoteFrequency.Ais / 2;
+                    break;
+                case Keys.L:
+                    frequency = octave * ENoteFrequency.Cis;
+                    break;
+                case Keys.OemSemicolon:
+                    frequency = octave * ENoteFrequency.Dis;
+                    break;
+                #endregion
+                #region Fourth Row
+                case Keys.Z:
+                    frequency = octave * ENoteFrequency.C / 2;
+                    break;
+                case Keys.X:
+                    frequency = octave * ENoteFrequency.D / 2;
+                    break;
+                case Keys.C:
+                    frequency = octave * ENoteFrequency.E / 2;
+                    break;
+                case Keys.V:
+                    frequency = octave * ENoteFrequency.F / 2;
+                    break;
+                case Keys.B:
+                    frequency = octave * ENoteFrequency.G / 2;
+                    break;
+                case Keys.N:
+                    frequency = octave * ENoteFrequency.A / 2;
+                    break;
+                case Keys.M:
+                    frequency = octave * ENoteFrequency.B / 2;
+                    break;
+                case Keys.Oemcomma:
+                    frequency = octave * ENoteFrequency.C;
+                    break;
+                case Keys.OemPeriod:
+                    frequency = octave * ENoteFrequency.D;
+                    break;
+                case Keys.OemQuestion:
+                    frequency = octave * ENoteFrequency.E;
                     break;
                 #endregion
                 #endregion
